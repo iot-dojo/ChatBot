@@ -1,0 +1,17 @@
+function doPost(e) {
+  if (e.parameter.token != "<Outcoming Webhookのtoken>") {
+    return;
+  }
+
+  var text = e.parameter.text;
+  appendRow(text);
+}
+
+function appendRow(text) {
+  var spreadsheetId = "<スプレッドシートのID>";
+  var sheetName = "<シート名>";
+  var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+  var sheet = spreadsheet.getSheetByName(sheetName);
+  sheet.appendRow([new Date(),text]);
+  return text;  
+}
